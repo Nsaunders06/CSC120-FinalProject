@@ -13,4 +13,6 @@ public Outside(){
     this.doorOpen = false; 
 }
 
+
+
 }
