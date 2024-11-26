@@ -7,6 +7,8 @@ int locationY;
 //Arraylist <items> inventory; 
 String roomLocation; 
 String input; 
+//inventory to hold items
+private ArrayList<Item> inventory;
 
 /**
  * Constructor 
@@ -15,23 +17,47 @@ public Person(String roomLocation, String input){
     this.locationX = -2; 
     this.locationY = -2; 
     this.roomLocation = roomLocation; 
-    this.input = input; 
+    this.input = input;
+    this.inventory = new ArrayList<(); 
 }
 
+//This should connect to a scanner eventually (probably in a file called Game.java or something)
 public boolean open(int locationX, int locationY, String room){
+    if (room.equals("Outside") && locationX == 2 && locationY == 2) {
+        System.out.println("The door opens!");
+        return true;
+    }
+    //Could add more else statements if there are more things that need to be opened
+    System.out.println("You cannot open anything here.");
     return false; 
 } // Come back and fix this once more stuff is in place 
 
-public Item grab(int locationX, int locationY, String room){ 
-    // This will fist check if there is an item there and then will add the item to the inventory array list 
+public void grab(Item item){ 
+    if (item != null) {
+        inventory.add(item);
+        System.out.println("You picked up: " + item.getName());
+    } else {
+        System.out.println("There's nothing to grab here.");
+    }
 }
 
-public void viewInventory (Items inventory){ 
-    System.out.println(inventory);
+public void viewInventory() { 
+    System.out.println("Inventory:");
+    for (Item item : inventory) {
+        System.out.println("- " + item.getName());
+    }
 }
 
 public void viewLocation (int locationX, int locationY){
-    System.out.println("You are at" + locationX + "," + locationY);
+    System.out.println("You are at (" + locationX + "," + locationY + ")");
 }
 
+public void move(int deltaX, int deltaY) {
+
+}
+/*Getters and setters
+getLocationX and getLocationY (int)
+getRoomLocation (String)
+setRoomLocation (void)
+*/
 }
