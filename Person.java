@@ -18,7 +18,7 @@ public Person(String roomLocation, String input){
     this.locationY = -2; 
     this.roomLocation = roomLocation; 
     this.input = input;
-    this.inventory = new ArrayList<(); 
+    this.inventory = new ArrayList<>(); 
 }
 
 //This should connect to a scanner eventually (probably in a file called Game.java or something)
