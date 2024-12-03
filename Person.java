@@ -60,4 +60,22 @@ getLocationX and getLocationY (int)
 getRoomLocation (String)
 setRoomLocation (void)
 */
+public int getLocationX() {
+    return locationX;
+}
+
+public int getLocationY() {
+    return locationY;
+}
+public String getRoomLocation() {
+    return roomLocation;
+}
+
+public void setRoomLocation(String newRoomLocation) {
+    if (newRoomLocation.equalsIgnoreCase("Garden") || newRoomLocation.equalsIgnoreCase("Outside") || newRoomLocation.equalsIgnoreCase("Inside")) {
+        roomLocation = newRoomLocation;
+    } else {
+        throw new RuntimeException("Invalid Room Location!");
+    }
+}
 }
