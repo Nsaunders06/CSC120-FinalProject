@@ -52,11 +52,6 @@ public void viewLocation (int locationX, int locationY){
     System.out.println("You are at (" + locationX + "," + locationY + ")");
 }
 
-public void move (String direction, int amount){ 
-    // Move the person in the direction given by the number of units noted 
-    // error handling --> if user goes outside the given coordinate plane print error 
-}
-
 public void move(int deltaX, int deltaY) {
 
 }

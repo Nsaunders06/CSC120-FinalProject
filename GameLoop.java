@@ -1,7 +1,10 @@
 import java.util.Scanner; 
 public class GameLoop {
     public static void main(String[] args) {
-        // let us know when the loop should end 
-        boolean stillPlaying = true; 
+        // Attributes 
+        boolean stillPlaying = true; // let us know when the loop should end 
+        Scanner userInput = new Scanner(System.in); 
+        String userResponse = ""; 
+
     }
 }
