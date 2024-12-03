@@ -10,4 +10,11 @@ public class Item {
      * Getters and setters
      * getName and getDescription
      */
+    public String getName() {
+        return name;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
 }
