@@ -14,7 +14,21 @@ public class Item {
 
     /*
      * Getters and setters
-     * getName and getDescription
      */
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public int getX() {
+        return locationX;
+    }
+
+    public int getY() {
+        return locationY;
+    }
     
 }
