@@ -6,18 +6,16 @@ int locationX;
 int locationY; 
 //Arraylist <items> inventory; 
 String roomLocation; 
-String input; 
 //inventory to hold items
 private ArrayList<Item> inventory;
 
 /**
  * Constructor 
  */
-public Person(String roomLocation, String input){
+public Person(String roomLocation){
     this.locationX = -2; 
     this.locationY = -2; 
     this.roomLocation = roomLocation; 
-    this.input = input;
     this.inventory = new ArrayList<>(); 
 }
 
@@ -77,5 +75,9 @@ public void setRoomLocation(String newRoomLocation) {
     } else {
         throw new RuntimeException("Invalid Room Location!");
     }
+}
+
+public void lookAround() {
+    
 }
 }
