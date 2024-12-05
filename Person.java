@@ -75,8 +75,8 @@ public void move(String direction, int delta)
     if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
     System.out.println("You can't move that far in that direction!");
     } else {
-    locationX = newX;
-    locationX = newY;
+    setLocationX(newX);
+    setLocationY(newY);
     System.out.println("You moved to (" + locationX + "," + locationY + ").");
     }
 }
@@ -99,6 +99,14 @@ public void setRoomLocation(String newRoomLocation) {
     } else {
         throw new RuntimeException("Invalid Room Location!");
     }
+}
+
+public void setLocationX(int newLocX) {
+    locationX = newLocX;
+}
+
+public void setLocationY(int newLocY) {
+    locationY = newLocY;
 }
 
 public void lookAround() {
@@ -124,5 +132,7 @@ public void lookAround() {
         System.out.println("You see in front of you an easel and some sort of pen?");
     }
 }
+
+
 
 }
