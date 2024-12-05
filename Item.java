@@ -30,5 +30,5 @@ public class Item {
     public int getY() {
         return locationY;
     }
-    
+
 }
