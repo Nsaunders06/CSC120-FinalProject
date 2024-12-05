@@ -45,6 +45,6 @@ public class GameLoop {
 
         } while (stillPlaying);
 
-
+    
     }
 }
