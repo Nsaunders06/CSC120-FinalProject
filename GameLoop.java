@@ -25,13 +25,20 @@ public class GameLoop {
         }
 
         if (userResponse.contains("MOVE")) {
+        String direction = "forward";
+        int intAmt = 1;
         Scanner scan = new Scanner(userResponse);
         scan.next();
-        String direction = scan.next();
-        String stringAmt = scan.next();
-        int intAmt = Integer.parseInt(stringAmt);
+        if (scan.hasNext()) { 
+             direction = scan.next();
+            if (scan.hasNext()) {
+                String stringAmt = scan.next();
+                intAmt = Integer.parseInt(stringAmt);
+                }
+        }
         person.move(direction, intAmt);
         }
+        
         
         System.out.println("You are still stuck. Keep going :)");
         
