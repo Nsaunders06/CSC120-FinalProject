@@ -16,7 +16,7 @@ public Person(String roomLocation){
     this.locationX = -2; 
     this.locationY = -2; 
     this.roomLocation = roomLocation; 
-    this.inventory = new ArrayList<>(); 
+    this.inventory = new ArrayList<Item>(); 
 }
 
 //This should connect to a scanner eventually (probably in a file called Game.java or something)
@@ -100,4 +100,5 @@ public void lookAround(int locationX, int locationY, String roomLocation) {
         System.out.println("You see in front of you an easel and some sort of pen?");
     }
 }
+
 }
