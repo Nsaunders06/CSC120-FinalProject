@@ -1,4 +1,5 @@
-import java.util.Scanner; 
+import java.util.Scanner;
+
 public class GameLoop {
     public static void main(String[] args) {
         // Attributes 
@@ -23,6 +24,14 @@ public class GameLoop {
             System.out.println("You are at " + person.viewLocation() + "in the" + person.getRoomLocation());
         }
 
+        if (userResponse.contains("MOVE")) {
+        Scanner scan = new Scanner(userResponse);
+        scan.next();
+        String direction = scan.next();
+        String stringAmt = scan.next();
+        int intAmt = Integer.parseInt(stringAmt);
+        person.move(direction, intAmt);
+        }
         
         System.out.println("You are still stuck. Keep going :)");
         

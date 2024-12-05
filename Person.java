@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import jdk.jshell.spi.ExecutionControl;
 
 public class Person {
 //attributes 
@@ -49,15 +50,38 @@ public void viewInventory() {
 public String viewLocation(){
     return getLocationX() + "," + getLocationY() + ")";
 }
-
+/*
 public void move(int deltaX, int deltaY) {
-
+    int newX = locationX + deltaX;
+    int newY = locationY + deltaY;
 }
-/*Getters and setters
-getLocationX and getLocationY (int)
-getRoomLocation (String)
-setRoomLocation (void)
 */
+public void move(String direction, int delta)
+{
+    int newX = locationX;
+    int newY = locationY;
+    if (direction.toUpperCase().equals("FORWARD") || direction.toUpperCase().equals("UP") || direction.toUpperCase().equals("NORTH")) {
+        newY = locationY + delta;
+    } else if (direction.toUpperCase().equals("BACK") || direction.toUpperCase().equals("DOWN") || direction.toUpperCase().equals("SOUTH")) {
+        newY = locationY - delta; 
+    } else if (direction.toUpperCase().equals("LEFT") || direction.toUpperCase().equals("WEST")) {
+        newX = locationX - delta;
+    } else if (direction.toUpperCase().equals("RIGHT") || direction.toUpperCase().equals("EAST")) {
+        newX = locationX + delta;
+    } else {
+        throw new RuntimeException("This is not a valid direction, please enter one of the following directions:\nForward, Up, North\nBack, Down, South\nLeft, West\nRight, East"); 
+    }
+
+    if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
+    System.out.println("You can't move that far in that direction!");
+    } else {
+    locationX = newX;
+    locationX = newY;
+    System.out.println("You moved to (" + locationX + "," + locationY + ").");
+    }
+}
+//Getters and setters
+
 public int getLocationX() {
     return locationX;
 }
