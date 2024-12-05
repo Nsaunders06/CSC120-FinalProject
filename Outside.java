@@ -11,7 +11,7 @@ private Item goldenTicketItem;
 public Outside(){
     this.goldenTicket = false; 
     this.doorOpen = false; 
-    this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.");
+    this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0);
 }
 
 public void interact(Person player) {

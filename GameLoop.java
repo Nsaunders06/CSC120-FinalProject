@@ -1,5 +1,5 @@
 import java.util.Scanner; 
-public class GameLoop extends Person {
+public class GameLoop {
     public static void main(String[] args) {
         // Attributes 
         boolean stillPlaying = true; // let us know when the loop should end 
@@ -14,13 +14,13 @@ public class GameLoop extends Person {
         
         do{ 
         userResponse = userInput.nextLine().toUpperCase();
-        if (userResponse.equals("Look Around")){
+        if (userResponse.equals("LOOK AROUND")){
             person.lookAround(); 
         }
-        if(userResponse.equals("Where am I?")){
+        if(userResponse.equals("WHERE AM I?") || userResponse.equals("WHERE AM I")){
             person.viewLocation(); 
-            person.RoomLocation (); 
-            System.out.println("You are at" + viewLocation + "in the" + roomLocation);
+            person.getRoomLocation(); 
+            System.out.println("You are at " + person.viewLocation() + "in the" + person.getRoomLocation());
         }
 
         
