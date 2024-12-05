@@ -77,7 +77,27 @@ public void setRoomLocation(String newRoomLocation) {
     }
 }
 
-public void lookAround() {
-    
+public void lookAround(int locationX, int locationY, String roomLocation) {
+    if(this.locationX== -2){
+        System.out.println("You have a wall to your left");
+    }
+    if (this.locationX == 2){
+        System.out.println("you have a wall to your right");
+    }
+    if (this.locationY == 2){
+        System.out.println("you have a wall in front of you");
+    }
+    if (this.locationY == -2){ 
+        System.out.println("you have a wall behind you");
+    }
+    if (this.roomLocation.equals("Outside")){
+        System.out.println("You also see a golden object somewhere in front of you and to the left");
+    }
+    if (this.roomLocation.equals("Garden")){
+        System.out.println("You see a chocolate river");
+    }
+    if (this.roomLocation.equals("Inside")){
+        System.out.println("You see in front of you an easel and some sort of pen?");
+    }
 }
 }
