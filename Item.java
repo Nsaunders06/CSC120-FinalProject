@@ -33,4 +33,8 @@ public class Item {
         return locationY;
     }
 
+    public String getRoom() {
+        return room;
+    }
+
 }

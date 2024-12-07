@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameLoop {
@@ -7,6 +8,10 @@ public class GameLoop {
         Scanner userInput = new Scanner(System.in); 
         String userResponse = ""; 
         Person person = new Person("Outside");
+
+         ArrayList<Item> gameItems = new ArrayList<>();
+        gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside"));
+     
         
         //Welcome message 
         System.out.println("******************");
@@ -40,9 +45,8 @@ public class GameLoop {
         person.move(direction, intAmt);
         }
         
-        if(userResponse.contains("GRAB")) {
-            
-           // person.grab()
+        if (userResponse.contains("GRAB")) {
+            person.grab(gameItems);
         }
         
         System.out.println("You are still stuck. Keep going :)");

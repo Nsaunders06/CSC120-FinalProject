@@ -30,11 +30,19 @@ public boolean open(int locationX, int locationY, String room){
     return false; 
 } // Come back and fix this once more stuff is in place 
 
-public void grab(int locationX, int locationY, String roomName){ 
-    
-    if (item != null) {
-        inventory.add(item);
-        System.out.println("You picked up: " + item.getName());
+public void grab(ArrayList<Item> gameItems) { 
+    Item foundItem = null;
+    for (Item item : gameItems) {
+        if (item.getX() == this.getLocationX() && item.getY() == this.getLocationY() && item.getRoom().equals(this.getRoomLocation())) {
+            foundItem = item;
+            break;
+        }
+    }
+
+    if (foundItem != null) {
+        inventory.add(foundItem);
+        gameItems.remove(foundItem); // Remove the item from the world
+        System.out.println("You picked up: " + foundItem.getName());
     } else {
         System.out.println("There's nothing to grab here.");
     }
