@@ -6,7 +6,8 @@ public class GameLoop {
         boolean stillPlaying = true; // let us know when the loop should end 
         Scanner userInput = new Scanner(System.in); 
         String userResponse = ""; 
-        Person person = new Person("Outside"); 
+        Person person = new Person("Outside");
+        
         //Welcome message 
         System.out.println("******************");
         System.out.println("WELCOME TO MY GAME");
@@ -39,6 +40,10 @@ public class GameLoop {
         person.move(direction, intAmt);
         }
         
+        if(userResponse.contains("GRAB")) {
+            
+           // person.grab()
+        }
         
         System.out.println("You are still stuck. Keep going :)");
         

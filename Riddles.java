@@ -10,8 +10,8 @@ Scanner Scan = new Scanner(System.in);
 
 //constructor 
 public Riddles(){
-    riddleList = new Hashtable<>();
-    answerList = new Hashtable<>(); 
+    riddleList = new Hashtable<String, String>();
+    answerList = new Hashtable<String, String>(); 
     addRiddles();
 }
 

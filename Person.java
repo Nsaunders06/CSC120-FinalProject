@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import jdk.jshell.spi.ExecutionControl;
 
 public class Person {
 //attributes 
@@ -31,7 +30,8 @@ public boolean open(int locationX, int locationY, String room){
     return false; 
 } // Come back and fix this once more stuff is in place 
 
-public void grab(Item item){ 
+public void grab(int locationX, int locationY, String roomName){ 
+    
     if (item != null) {
         inventory.add(item);
         System.out.println("You picked up: " + item.getName());
