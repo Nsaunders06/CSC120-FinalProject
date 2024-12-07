@@ -11,6 +11,7 @@ public class GameLoop {
 
          ArrayList<Item> gameItems = new ArrayList<>();
         gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside"));
+        gameItems.add(new Item("Pen", "A mysterious writing utensil", -1, 0, "Inside"));
      
         
         //Welcome message 
