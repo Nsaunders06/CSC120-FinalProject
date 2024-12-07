@@ -48,6 +48,10 @@ public class GameLoop {
         if (userResponse.contains("GRAB")) {
             person.grab(gameItems);
         }
+
+        if (userResponse.contains("VIEW INVENTORY") || userResponse.contains("INVENTORY") || userResponse.contains("WHAT DO I HAVE")) {
+                person.viewInventory();
+        }
         
         System.out.println("You are still stuck. Keep going :)");
         

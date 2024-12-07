@@ -49,10 +49,15 @@ public void grab(ArrayList<Item> gameItems) {
 }
 
 public void viewInventory() { 
-    System.out.println("Inventory:");
-    for (Item item : inventory) {
-        System.out.println("- " + item.getName());
+    if (inventory.size() != 0) {
+        System.out.println("Inventory:");
+        for (Item item : inventory) {
+            System.out.println("- " + item.getName());
+        }
+    } else {
+        System.out.println("There is nothing in your inventory at this time!");
     }
+    
 }
 
 public String viewLocation(){
