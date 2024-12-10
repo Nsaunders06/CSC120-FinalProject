@@ -9,6 +9,7 @@ public class GameLoop {
         String userResponse = ""; 
         Person person = new Person("Outside");
         Outside outside = new Outside();
+        Inside inside = new Inside();
 
 
          ArrayList<Item> gameItems = new ArrayList<>();
@@ -61,9 +62,15 @@ public class GameLoop {
             {
                 if (person.getLocationX() == 2 && person.getLocationY() == 2 && person.getRoomLocation().equals("Outside")) {
                     outside.setDoorOpenOutside(true);
+                    inside.setDoorOpenInsidetoOutside(true);
                 }
             }
         }
+
+        if(person.getRoomLocation().equals("Outside")) {
+            outside.interact(person);
+        }
+        
         System.out.println("You are still stuck. Keep going :)");
         
 

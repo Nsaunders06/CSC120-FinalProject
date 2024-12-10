@@ -12,7 +12,7 @@ public Outside(){
     this.doorOpen = false; 
     this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0, "Outside");
 }
-
+//I'm not actually sure if this is ever used...we can make it be used but that would just mean it automatically tells them the ticket and door are there instead of them having to look around
 public void interact(Person player) {
     if (player.getLocationX() == 0 && player.getLocationY() == 0 && !goldenTicket) {
         System.out.println("You found the golden ticket!");
@@ -30,5 +30,13 @@ public boolean getDoorOpenOutside() {
 
 public void setDoorOpenOutside(boolean doorState) {
     doorOpen = doorState;
+}
+
+public boolean setGoldenTicket(boolean ticketState) {
+    return ticketState;
+}
+
+public void getGoldenTicket() {
+
 }
 }

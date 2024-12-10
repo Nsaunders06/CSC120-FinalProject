@@ -34,7 +34,7 @@ public void grab(ArrayList<Item> gameItems) {
     Item foundItem = null;
     for (Item item : gameItems) {
         if (item.getX() == this.getLocationX() && item.getY() == this.getLocationY() && item.getRoom().equals(this.getRoomLocation())) {
-            foundItem = item;
+            foundItem.equals(item);
             break;
         }
     }
@@ -136,7 +136,7 @@ public void lookAround() {
         System.out.println("you have a wall behind you");
     }
     if (this.getRoomLocation().equals("Outside")){
-        System.out.println("You also see a golden object"); //Come back and fix 
+        System.out.println("You see a golden object"); //Come back and fix 
     }
     if (this.getRoomLocation().equals("Garden")){
         System.out.println("You see a chocolate river");
