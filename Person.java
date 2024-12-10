@@ -8,7 +8,8 @@ int locationY;
 String roomLocation; 
 //inventory to hold items
 private ArrayList<Item> inventory;
-
+Inside inside = new Inside();
+Outside outside = new Outside();
 /**
  * Constructor 
  */
@@ -34,7 +35,7 @@ public void grab(ArrayList<Item> gameItems) {
     Item foundItem = null;
     for (Item item : gameItems) {
         if (item.getX() == this.getLocationX() && item.getY() == this.getLocationY() && item.getRoom().equals(this.getRoomLocation())) {
-            foundItem.equals(item);
+            foundItem = item;
             break;
         }
     }
@@ -73,6 +74,7 @@ public void move(String direction, int delta)
 {
     int newX = locationX;
     int newY = locationY;
+    String newRoom = roomLocation;
     if (direction.toUpperCase().equals("FORWARD") || direction.toUpperCase().equals("UP") || direction.toUpperCase().equals("NORTH")) {
         newY = locationY + delta;
     } else if (direction.toUpperCase().equals("BACK") || direction.toUpperCase().equals("DOWN") || direction.toUpperCase().equals("SOUTH")) {
@@ -87,11 +89,38 @@ public void move(String direction, int delta)
 
     if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
     System.out.println("You can't move that far in that direction!");
-    } else {
-    setLocationX(newX);
-    setLocationY(newY);
-    System.out.println("You moved to (" + locationX + "," + locationY + ").");
+    return;
     }
+// Check for room transition at door locations
+if (roomLocation.equals("Outside") && newX == 2 && newY == 2) {
+    // Moving from Outside to Inside
+    if (!outside.getDoorOpenOutside()) {
+        System.out.println("The door is closed. You cannot enter.");
+        return;
+    } else {
+        newRoom = "Inside";
+        System.out.println("You move through the door into the Inside.");
+    }
+} else if (roomLocation.equals("Inside") && newX == 2 && newY == 2) {
+    // Moving from Inside to Outside
+    if (!inside.getDoorOpenInsidetoOutside()) {
+        System.out.println("The door is closed. You cannot exit.");
+        return;
+    } else {
+        newRoom = "Outside";
+        System.out.println("You move through the door into the Outside.");
+    }
+}
+
+// Update position and room
+setLocationX(newX);
+setLocationY(newY);
+if (!newRoom.equals(roomLocation)) {
+    setRoomLocation(newRoom);
+}
+
+System.out.println("You moved to (" + locationX + "," + locationY + ") in the " + roomLocation + ".");
+
 }
 //Getters and setters
 
