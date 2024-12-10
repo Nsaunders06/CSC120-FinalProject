@@ -8,6 +8,8 @@ public class GameLoop {
         Scanner userInput = new Scanner(System.in); 
         String userResponse = ""; 
         Person person = new Person("Outside");
+        Outside outside = new Outside();
+
 
          ArrayList<Item> gameItems = new ArrayList<>();
         gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside"));
@@ -54,6 +56,14 @@ public class GameLoop {
                 person.viewInventory();
         }
         
+        if (userResponse.contains("OPEN")) {
+            if (person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation()))
+            {
+                if (person.getLocationX() == 2 && person.getLocationY() == 2 && person.getRoomLocation().equals("Outside")) {
+                    outside.setDoorOpenOutside(true);
+                }
+            }
+        }
         System.out.println("You are still stuck. Keep going :)");
         
 

@@ -145,7 +145,14 @@ public void lookAround() {
         System.out.println("You see in front of you an easel and some sort of pen?");
     }
 }
-
-
+/* 
+public void openDoor() {
+    //Check if the player is at one of the door locations
+    if((x == 2 && y == 2 && getRoomLocation().equals("Outside"))) {
+        setDoorOpenOutside(true);
+        System.out.println("The door is now open! You can move between the locations.");
+    }
+}
+*/
 
 }

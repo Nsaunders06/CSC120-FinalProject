@@ -3,7 +3,6 @@ public class Outside{
 boolean goldenTicket; 
 boolean doorOpen; 
 private Item goldenTicketItem;
-
 /** 
  * Constructor for Outside 
  */
@@ -25,9 +24,11 @@ public void interact(Person player) {
     }
 }
 
-public boolean isDoorOpen() {
+public boolean getDoorOpenOutside() {
     return doorOpen;
 }
 
-
+public void setDoorOpenOutside(boolean doorState) {
+    doorOpen = doorState;
+}
 }
