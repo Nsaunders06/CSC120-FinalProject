@@ -57,6 +57,7 @@ public class GameLoop {
                 person.viewInventory();
         }
         
+        //Looks if true --> if the door is open then if the location is 2 & 2 set the doors open 
         if (userResponse.contains("OPEN")) {
             if (person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation()))
             {

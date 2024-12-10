@@ -20,7 +20,7 @@ public Person(String roomLocation){
     this.inventory = new ArrayList<Item>(); 
 }
 
-//This should connect to a scanner eventually (probably in a file called Game.java or something)
+//This says if the door is open or not 
 public boolean open(int locationX, int locationY, String room){
     if (room.equals("Outside") && locationX == 2 && locationY == 2) {
         System.out.println("The door opens!");
