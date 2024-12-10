@@ -2,7 +2,7 @@ public class Outside{
 //Attributes 
 boolean goldenTicket; 
 boolean doorOpen; 
-private Item goldenTicketItem;
+//private Item goldenTicketItem;
 /** 
  * Constructor for Outside 
  */
@@ -10,7 +10,7 @@ private Item goldenTicketItem;
 public Outside(){
     this.goldenTicket = false; 
     this.doorOpen = false; 
-    this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0, "Outside");
+    //this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0, "Outside", false);
 }
 //I'm not actually sure if this is ever used...we can make it be used but that would just mean it automatically tells them the ticket and door are there instead of them having to look around
 public void interact(Person player) {
@@ -32,11 +32,11 @@ public void setDoorOpenOutside(boolean doorState) {
     doorOpen = doorState;
 }
 
-public boolean setGoldenTicket(boolean ticketState) {
-    return ticketState;
+public void setGoldenTicketState(boolean ticketState) {
+     goldenTicket = ticketState;
 }
 
-public void getGoldenTicket() {
-
+public boolean getGoldenTicketState() {
+    return goldenTicket;
 }
 }

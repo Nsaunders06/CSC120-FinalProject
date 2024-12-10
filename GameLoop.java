@@ -13,8 +13,8 @@ public class GameLoop {
 
 
          ArrayList<Item> gameItems = new ArrayList<>();
-        gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside"));
-        gameItems.add(new Item("Pen", "A mysterious writing utensil", -1, 0, "Inside"));
+        gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside", false));
+        gameItems.add(new Item("Pen", "A mysterious writing utensil", -1, 0, "Inside", false));
      
         
         //Welcome message 
@@ -66,11 +66,11 @@ public class GameLoop {
                 }
             }
         }
-
+        /*
         if(person.getRoomLocation().equals("Outside")) {
             outside.interact(person);
         }
-        
+        */
         System.out.println("You are still stuck. Keep going :)");
         
 
