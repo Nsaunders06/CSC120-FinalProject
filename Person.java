@@ -8,8 +8,8 @@ int locationY;
 String roomLocation; 
 //inventory to hold items
 private ArrayList<Item> inventory;
-Inside inside = new Inside();
-Outside outside = new Outside();
+//Inside inside = new Inside();
+//Outside outside = new Outside();
 /**
  * Constructor 
  */
@@ -21,14 +21,14 @@ public Person(String roomLocation){
 }
 
 //This says if the door is open or not 
-public boolean open(int locationX, int locationY, String room){
+public void open(int locationX, int locationY, String room, Outside outside, Inside inside){
     if (room.equals("Outside") && locationX == 2 && locationY == 2) {
+        outside.setDoorOpenOutside(true);
+        inside.setDoorOpenInsidetoOutside(true);
         System.out.println("The door opens!");
-        return true;
     }
     //Could add more else statements if there are more things that need to be opened
     System.out.println("You cannot open anything here.");
-    return false; 
 } // Come back and fix this once more stuff is in place 
 
 public void grab(ArrayList<Item> gameItems) { 
@@ -70,7 +70,7 @@ public void move(int deltaX, int deltaY) {
     int newY = locationY + deltaY;
 }
 */
-public void move(String direction, int delta)
+public void move(String direction, int delta, Outside outside, Inside inside)
 {
     int newX = locationX;
     int newY = locationY;
@@ -87,12 +87,9 @@ public void move(String direction, int delta)
         throw new RuntimeException("This is not a valid direction, please enter one of the following directions:\nForward, Up, North\nBack, Down, South\nLeft, West\nRight, East"); 
     }
 
-    if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
-    System.out.println("You can't move that far in that direction!");
-    return;
-    }
-// Check for room transition at door locations
-if (roomLocation.equals("Outside") && newX == 2 && newY == 2) {
+   // System.out.println("Check 1 in move");
+    // Check for room transition at door locations
+if (roomLocation.equals("Outside") && newX > 2 && newY > 2) {
     // Moving from Outside to Inside
     if (!outside.getDoorOpenOutside()) {
         System.out.println("The door is closed. You cannot enter.");
@@ -111,6 +108,12 @@ if (roomLocation.equals("Outside") && newX == 2 && newY == 2) {
         System.out.println("You move through the door into the Outside.");
     }
 }
+
+    if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
+    System.out.println("You can't move that far in that direction!");
+    return;
+    }
+
 
 // Update position and room
 setLocationX(newX);

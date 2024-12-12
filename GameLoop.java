@@ -46,7 +46,7 @@ public class GameLoop {
                 intAmt = Integer.parseInt(stringAmt);
                 }
         }
-        person.move(direction, intAmt);
+        person.move(direction, intAmt, outside, inside);
         }
         
         if (userResponse.contains("GRAB")) {
@@ -59,13 +59,16 @@ public class GameLoop {
         
         //Looks if true --> if the door is open then if the location is 2 & 2 set the doors open 
         if (userResponse.contains("OPEN")) {
-            if (person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation()))
+            /* 
+            if (person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside))
             {
                 if (person.getLocationX() == 2 && person.getLocationY() == 2 && person.getRoomLocation().equals("Outside")) {
                     outside.setDoorOpenOutside(true);
                     inside.setDoorOpenInsidetoOutside(true);
                 }
             }
+        */
+            person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside);
         }
         /*
         if(person.getRoomLocation().equals("Outside")) {
