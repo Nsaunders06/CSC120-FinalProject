@@ -70,8 +70,7 @@ public void move(int deltaX, int deltaY) {
     int newY = locationY + deltaY;
 }
 */
-public void move(String direction, int delta, Outside outside, Inside inside)
-{
+public void move(String direction, int delta, Outside outside, Inside inside) {
     int newX = locationX;
     int newY = locationY;
     String newRoom = roomLocation;
@@ -89,7 +88,7 @@ public void move(String direction, int delta, Outside outside, Inside inside)
 
    // System.out.println("Check 1 in move");
     // Check for room transition at door locations
-if (roomLocation.equals("Outside") && newX > 2 && newY > 2) {
+if (roomLocation.equals("Outside") && newX > 2 && newY == 2) {
     // Moving from Outside to Inside
     if (!outside.getDoorOpenOutside()) {
         System.out.println("The door is closed. You cannot enter.");
@@ -98,7 +97,7 @@ if (roomLocation.equals("Outside") && newX > 2 && newY > 2) {
         newRoom = "Inside";
         System.out.println("You move through the door into the Inside.");
     }
-} else if (roomLocation.equals("Inside") && newX == 2 && newY == 2) {
+} else if (roomLocation.equals("Inside") && newX < -2 && newY < -2) {
     // Moving from Inside to Outside
     if (!inside.getDoorOpenInsidetoOutside()) {
         System.out.println("The door is closed. You cannot exit.");
