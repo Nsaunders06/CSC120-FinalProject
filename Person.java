@@ -73,6 +73,7 @@ public void move(int deltaX, int deltaY) {
 public void move(String direction, int delta, Outside outside, Inside inside) {
     int newX = locationX;
     int newY = locationY;
+    boolean roomChange = false;
     String newRoom = roomLocation;
     if (direction.toUpperCase().equals("FORWARD") || direction.toUpperCase().equals("UP") || direction.toUpperCase().equals("NORTH")) {
         newY = locationY + delta;
@@ -96,6 +97,13 @@ if (roomLocation.equals("Outside") && newX > 2 && newY == 2) {
     } else {
         newRoom = "Inside";
         System.out.println("You move through the door into the Inside.");
+        //roomChange = true;
+        if (newX != locationX)
+        {
+            newX = (2 - newX);
+            newY = -2;
+        }
+
     }
 } else if (roomLocation.equals("Inside") && newX < -2 && newY < -2) {
     // Moving from Inside to Outside
@@ -105,10 +113,9 @@ if (roomLocation.equals("Outside") && newX > 2 && newY == 2) {
     } else {
         newRoom = "Outside";
         System.out.println("You move through the door into the Outside.");
+        //roomChange = true;
     }
-}
-
-    if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
+} else if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
     System.out.println("You can't move that far in that direction!");
     return;
     }
