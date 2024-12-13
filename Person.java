@@ -9,7 +9,7 @@ String roomLocation;
 //inventory to hold items
 private ArrayList<Item> inventory;
 //Inside inside = new Inside();
-//Outside outside = new Outside();
+//Outside outside = new Outside()
 /**
  * Constructor 
  */
