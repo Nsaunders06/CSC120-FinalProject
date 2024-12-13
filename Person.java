@@ -26,9 +26,9 @@ public void open(int locationX, int locationY, String room, Outside outside, Ins
         outside.setDoorOpenOutside(true);
         inside.setDoorOpenInsidetoOutside(true);
         System.out.println("The door opens!");
+    } else { //Could add more else statements if there are more things that need to be opened
+        System.out.println("You cannot open anything here.");
     }
-    //Could add more else statements if there are more things that need to be opened
-    System.out.println("You cannot open anything here.");
 } // Come back and fix this once more stuff is in place 
 
 public void grab(ArrayList<Item> gameItems) { 
@@ -160,27 +160,30 @@ public void setLocationY(int newLocY) {
     locationY = newLocY;
 }
 
-public void lookAround() {
-    if(this.getLocationX()== -2){
-        System.out.println("You have a wall to your left");
+public void lookAround(Person person) {
+    if(person.getLocationX()== -2){
+        System.out.println("You have a wall directly to your left");
     }
-    if (this.getLocationX() == 2){
-        System.out.println("you have a wall to your right");
+    if (person.getLocationX() == 2){
+        System.out.println("you have a wall directly to your right");
     }
-    if (this.getLocationY() == 2){
-        System.out.println("you have a wall in front of you");
+    if (person.getLocationY() == 2){
+        System.out.println("you have a wall directly in front of you");
     }
-    if (this.getLocationY() == -2){ 
-        System.out.println("you have a wall behind you");
+    if (person.getLocationY() == -2){ 
+        System.out.println("you have a wall directly behind you");
     }
-    if (this.getRoomLocation().equals("Outside")){
+    if (person.getRoomLocation().equals("Outside") && person.getLocationX() == 0 && person.getLocationY() == 0){
         System.out.println("You see a golden object"); //Come back and fix 
     }
-    if (this.getRoomLocation().equals("Garden")){
+    if (person.getRoomLocation().equals("Garden")){
         System.out.println("You see a chocolate river");
     }
-    if (this.getRoomLocation().equals("Inside")){
+    if (person.getRoomLocation().equals("Inside")){
         System.out.println("You see in front of you an easel and some sort of pen?");
+    }
+    if (person.getRoomLocation().equals("Outside") && person.getLocationX() == 2 && person.getLocationY() == 2) {
+        System.out.println("You see a door to your right.");
     }
 }
 /* 

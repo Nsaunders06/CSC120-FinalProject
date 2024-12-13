@@ -26,9 +26,9 @@ public class GameLoop {
         do{ 
         userResponse = userInput.nextLine().toUpperCase();
         if (userResponse.equals("LOOK AROUND")){
-            person.lookAround(); 
+            person.lookAround(person); 
         }
-        if(userResponse.equals("WHERE AM I?") || userResponse.equals("WHERE AM I")){
+        if(userResponse.contains("WHERE AM I")){
             person.viewLocation(); 
             person.getRoomLocation(); 
             System.out.println("You are at " + person.viewLocation() + "in the" + person.getRoomLocation());
@@ -49,7 +49,7 @@ public class GameLoop {
         person.move(direction, intAmt, outside, inside);
         }
         
-        if (userResponse.contains("GRAB")) {
+        if (userResponse.contains("GRAB") || userResponse.contains("PICK UP")) {
             person.grab(gameItems);
         }
 
