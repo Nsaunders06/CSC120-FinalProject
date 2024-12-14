@@ -31,7 +31,7 @@ public class GameLoop {
         if(userResponse.contains("WHERE AM I")){
             person.viewLocation(); 
             person.getRoomLocation(); 
-            System.out.println("You are at " + person.viewLocation() + " in the " + person.getRoomLocation());
+            System.out.println("You are at " + person.viewLocation() + "in the" + person.getRoomLocation());
         }
 
         if (userResponse.contains("MOVE")) {

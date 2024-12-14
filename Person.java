@@ -22,8 +22,7 @@ public Person(String roomLocation){
 
 //This says if the door is open or not 
 public void open(int locationX, int locationY, String room, Outside outside, Inside inside, Person person){
-
-    if (room.equals("Outside") && locationX == 2 && locationY == 2 && person.viewInventory().contains("")) {
+    if (room.equals("Outside") && locationX == 2 && locationY == 2 && person.getInventory().contains("Ticket")){
         outside.setDoorOpenOutside(true);
         inside.setDoorOpenInsidetoOutside(true);
         System.out.println("The door opens!");
@@ -147,6 +146,14 @@ public int getLocationY() {
 }
 public String getRoomLocation() {
     return roomLocation;
+}
+
+public String getInventory() {
+    String itemListNames = "";
+    for (int i = 0; i < inventory.size(); i++) {
+        itemListNames += inventory.get(i).getName() + " ";
+    }
+    return itemListNames;
 }
 
 public void setRoomLocation(String newRoomLocation) {
