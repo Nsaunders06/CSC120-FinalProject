@@ -20,7 +20,7 @@ public void interact(Person player) {
     }
     if (goldenTicket && player.getLocationX() == 2 && player.getLocationY() == 2) {
         System.out.println("A door appears!");
-        //some code here to open door?
+       
     }
 }
 

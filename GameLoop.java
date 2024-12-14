@@ -68,7 +68,7 @@ public class GameLoop {
                 }
             }
         */
-            person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside);
+            person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside, person);
         }
         /*
         if(person.getRoomLocation().equals("Outside")) {
