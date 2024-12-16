@@ -61,10 +61,6 @@ public void viewInventory() {
     
 }
 
-public String getInventory(Person person) {
-    
-}
-
 public String viewLocation(){
     return "(" + getLocationX() + "," + getLocationY() + ")";
 }
