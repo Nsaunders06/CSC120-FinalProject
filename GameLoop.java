@@ -12,8 +12,7 @@ public class GameLoop {
         Inside inside = new Inside();
 
 
-         ArrayList<Item> gameItems = new ArrayList<>();
-        gameItems.add(new Item("Ticket", "A shiny golden object", 0, 0, "Outside", false));
+        ArrayList<Item> gameItems = new ArrayList<>();
         gameItems.add(new Item("Pen", "A mysterious writing utensil", -1, 0, "Inside", false));
      
         
@@ -26,7 +25,7 @@ public class GameLoop {
         do{ 
         userResponse = userInput.nextLine().toUpperCase();
         if (userResponse.equals("LOOK AROUND")){
-            person.lookAround(person); 
+            person.lookAround(); 
         }
         if(userResponse.contains("WHERE AM I")){
             person.viewLocation(); 
@@ -50,7 +49,7 @@ public class GameLoop {
         }
         
         if (userResponse.contains("GRAB") || userResponse.contains("PICK UP")) {
-            person.grab(gameItems);
+            person.grab(gameItems, outside);
         }
 
         if (userResponse.contains("VIEW INVENTORY") || userResponse.contains("INVENTORY") || userResponse.contains("WHAT DO I HAVE")) {
@@ -68,7 +67,7 @@ public class GameLoop {
                 }
             }
         */
-            person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside, person);
+            person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside);
         }
         /*
         if(person.getRoomLocation().equals("Outside")) {
