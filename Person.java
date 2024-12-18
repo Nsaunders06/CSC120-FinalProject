@@ -239,8 +239,8 @@ public class Person {
                 newY = -2;
                 System.out.println("You move through the door into the Garden.");
             }
-        } else if (roomLocation.equals("Garden")) {
-            //Moving from Garden to Inside
+        } else if (roomLocation.equals("Garden") && newX < -2 && newY == -2) {
+            //Moving from Garden to Inside,
             if (!garden.getDoorOpenGardenToInside()) {
                 System.out.println("The door is closed. You cannot exit.");
                 return;
@@ -273,8 +273,9 @@ public class Person {
     public boolean boardElevator(Garden garden) {
         if (!garden.isAtElevator(this.getLocationX(), this.getLocationY())) {
             System.out.println("There is nothing to board here!");
+            return false;
         }
-        return garden.isAtElevator(this.getLocationX(), this.getLocationY());
+        return true;
     }
 
     public void signContract(Inside inside) {
@@ -300,6 +301,24 @@ public class Person {
         }
         return false;
     }
+
+    public static void displayHelp() {
+        System.out.println("\nAvailable Commands:");
+        System.out.println("- LOOK AROUND: Observe your surroundings.");
+        System.out.println("- WHERE AM I: Check your current location.");
+        System.out.println("- MOVE [direction] [steps]: Move in a specified direction (e.g., MOVE FORWARD 2).");
+        System.out.println("- GRAB / PICK UP [item]: Pick up an item in your current location.");
+        System.out.println("- VIEW INVENTORY / INVENTORY / WHAT DO I HAVE: Check items in your inventory.");
+        System.out.println("- OPEN: Open an object or door if conditions are met.");
+        System.out.println("- CLOSE: Close an object or door.");
+        System.out.println("- SIGN: Sign the contract if you have a pen.");
+        System.out.println("- CHEW: Interact with gumballs in the Garden.");
+        System.out.println("- SHRINK: Interact with the TV camera in the Garden.");
+        System.out.println("- BOARD / GET ON: Board the boat to win the game.");
+        System.out.println("- HELP: Display this list of commands.");
+        System.out.println("\nUse commands wisely to progress in the game!");
+    }
+    
 //Getters and setters
 
     public int getLocationX() {
