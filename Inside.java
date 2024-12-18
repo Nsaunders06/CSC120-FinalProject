@@ -20,19 +20,19 @@ public class Inside {
         placeItems();
     }
 
-    public boolean getDoorOpenInsidetoOutside() {
+    public boolean getDoorOpenInsideToOutside() {
         return entranceDoorOpen;
     }
 
-    public void setDoorOpenInsidetoOutside(boolean doorState) {
+    public void setDoorOpenInsideToOutside(boolean doorState) {
         entranceDoorOpen = doorState;
     }
 
-    public boolean getDoorOpenInsidetoGarden() {
+    public boolean getDoorOpenInsideToGarden() {
         return exitDoorOpen;
     }
 
-    public void setDoorOpenInsidetoGarden(boolean doorState) {
+    public void setDoorOpenInsideToGarden(boolean doorState) {
         exitDoorOpen = doorState;
     }
 
@@ -60,7 +60,7 @@ public class Inside {
     // Signs the contract if the pen is found
     public boolean signContract(int x, int y) {
         if (penFound && x == contractLocation[0] && y == contractLocation[1]) {
-            this.contractSigned = true;
+            setContractSigned(true);
             System.out.println("You signed the contract!");
             return true;
         } else if ((!(x == contractLocation[0]) || !(y == contractLocation[1])) && penFound) {
@@ -88,6 +88,10 @@ public class Inside {
     // Getter for contractSigned
     public boolean isContractSigned() {
         return contractSigned;
+    }
+
+    public void setContractSigned(boolean state) {
+        contractSigned = state;
     }
 
     public int getContractLocationX() {

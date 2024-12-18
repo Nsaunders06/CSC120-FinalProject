@@ -6,17 +6,14 @@ public class Item {
     private int locationX;
     private int locationY;
     private String room;
-    private boolean inInventory;
 
-    public Item(String name, String description, int locationX, int locationY, String room, boolean inInventory) {
+    public Item(String name, String description, int locationX, int locationY, String room) {
         this.name = name;
         this.description = description;
         this.locationX = locationX;
         this.locationY = locationY;
         this.room = room;
-        this.inInventory = inInventory;
     }
-
 
     /*
      * Getters and setters

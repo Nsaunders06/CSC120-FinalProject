@@ -22,31 +22,87 @@ public class Person {
 
     //This says if the door is open or not 
     public void open(int locationX, int locationY, String room, Outside outside, Inside inside, Garden garden) {
-        if (room.equals("Outside") && locationX == 2 && locationY == 2 && outside.getGoldenTicketState()) {
-            outside.setDoorOpenOutside(true);
-            inside.setDoorOpenInsidetoOutside(true);
-            System.out.println("The door opens!");
+        if (room.equals("Outside") && locationX == 2 && locationY == 2) {
+            if (outside.getGoldenTicketState()) {
+                if (!outside.getDoorOpenOutside()) {
+                    outside.setDoorOpenOutside(true);
+                    inside.setDoorOpenInsideToOutside(true);
+                    System.out.println("The door opens!");
+                } else {
+                    System.out.println("The door is already open!");
+                }
+            } else {
+                System.out.println("You must have the golden ticket to open the door!");
+            }
         } else if (room.equals("Inside") && locationX == -2 && locationY == -2) {
-            outside.setDoorOpenOutside(true);
-            inside.setDoorOpenInsidetoOutside(true);
+            if (!outside.getDoorOpenOutside()) {
+                outside.setDoorOpenOutside(true);
+                inside.setDoorOpenInsideToOutside(true);
+                System.out.println("The door opens!");
+            } else {
+                System.out.println("The door is already open!");
+            }
         } else if (room.equals("Inside") && locationX == 2 && locationY == -2) {
-            if (inside.isContractSigned() && !inside.isContractSigned()) {
-                inside.setDoorOpenInsidetoGarden(true);
-                garden.setDoorOpenGardentoInside(true);
-            } else if (inside.getDoorOpenInsidetoGarden()){
+            if (inside.isContractSigned() && !inside.getDoorOpenInsideToGarden()) {
+                inside.setDoorOpenInsideToGarden(true);
+                garden.setDoorOpenGardenToInside(true);
+                System.out.println("The door opens!");
+            } else if (inside.getDoorOpenInsideToGarden()) {
                 System.out.println("The door is already open!");
             } else if (!inside.isContractSigned()) {
                 System.out.println("You must sign the contract in order to open the door!");
             }
         } else if (room.equals("Garden") && locationX == -2 && locationY == -2) {
-            if (!inside.getDoorOpenInsidetoGarden()) {
-                inside.setDoorOpenInsidetoGarden(true);
-                garden.setDoorOpenGardentoInside(true);
+            if (!inside.getDoorOpenInsideToGarden()) {
+                inside.setDoorOpenInsideToGarden(true);
+                garden.setDoorOpenGardenToInside(true);
             } else {
                 System.out.println("This door is already open!");
             }
+        } else {
+            System.out.println("You cannot open anything here.");
         }
-        else {
+    }
+
+    //This says if the door is open or not 
+    public void close(int locationX, int locationY, Outside outside, Inside inside, Garden garden, String room) {
+        if (room.equals("Outside") && locationX == 2 && locationY == 2) {
+            if (outside.getGoldenTicketState()) {
+                if (outside.getDoorOpenOutside()) {
+                    outside.setDoorOpenOutside(false);
+                    inside.setDoorOpenInsideToOutside(false);
+                    System.out.println("The door is now closed!");
+                } else {
+                    System.out.println("The door is already closed!");
+                }
+            } else {
+                System.out.println("You cannot do anything without the golden ticket.");
+            }
+        } else if (room.equals("Inside") && locationX == -2 && locationY == -2) {
+            if (outside.getDoorOpenOutside()) {
+                outside.setDoorOpenOutside(false);
+                inside.setDoorOpenInsideToOutside(false);
+                System.out.println("The door closes!");
+            } else {
+                System.out.println("The door is already closed!");
+            }
+        } else if (room.equals("Inside") && locationX == 2 && locationY == -2) {
+            if (inside.getDoorOpenInsideToGarden()) {
+                inside.setDoorOpenInsideToGarden(false);
+                garden.setDoorOpenGardenToInside(false);
+            } else if (!inside.getDoorOpenInsideToGarden()) {
+                System.out.println("The door is already closed!");
+            } else if (!inside.isContractSigned()) {
+                System.out.println("You must sign the contract in order to interact with the door!");
+            }
+        } else if (room.equals("Garden") && locationX == -2 && locationY == -2) {
+            if (!inside.getDoorOpenInsideToGarden()) {
+                inside.setDoorOpenInsideToGarden(true);
+                garden.setDoorOpenGardenToInside(true);
+            } else {
+                System.out.println("This door is already open!");
+            }
+        } else {
             System.out.println("You cannot open anything here.");
         }
     }
@@ -130,10 +186,9 @@ public class Person {
         return "(" + getLocationX() + "," + getLocationY() + ")";
     }
 
-    public void move(String direction, int delta, Outside outside, Inside inside) {
+    public void move(String direction, int delta, Outside outside, Inside inside, Garden garden) {
         int newX = locationX;
         int newY = locationY;
-        boolean roomChange = false;
         String newRoom = roomLocation;
         if (direction.toUpperCase().equals("FORWARD") || direction.toUpperCase().equals("UP") || direction.toUpperCase().equals("NORTH")) {
             newY = locationY + delta;
@@ -164,7 +219,7 @@ public class Person {
             }
         } else if (roomLocation.equals("Inside") && newX < -2 && newY == -2) {
             // Moving from Inside to Outside
-            if (!inside.getDoorOpenInsidetoOutside()) {
+            if (!inside.getDoorOpenInsideToOutside()) {
                 System.out.println("The door is closed. You cannot exit.");
                 return;
             } else {
@@ -172,6 +227,28 @@ public class Person {
                 newX += 4;
                 newY = 2;
                 System.out.println("You move through the door into the Outside.");
+            }
+        } else if (roomLocation.equals("Inside") && newX > 2 && newY == -2) {
+            //Moving from Inside to Garden
+            if (!inside.getDoorOpenInsideToGarden()) {
+                System.out.println("The door is closed. You cannot exit.");
+                return;
+            } else {
+                newRoom = "Garden";
+                newX = (2 - newX);
+                newY = -2;
+                System.out.println("You move through the door into the Garden.");
+            }
+        } else if (roomLocation.equals("Garden")) {
+            //Moving from Garden to Inside
+            if (!garden.getDoorOpenGardenToInside()) {
+                System.out.println("The door is closed. You cannot exit.");
+                return;
+            } else {
+                newRoom = "Garden";
+                newX += 4;
+                newY = -2;
+                System.out.println("You move through the door into the Garden.");
             }
         } else if (newX < -2 || newX > 2 || newY < -2 || newY > 2) {
             System.out.println("You can't move that far in that direction!");
@@ -187,6 +264,17 @@ public class Person {
 
         System.out.println("You moved to (" + locationX + "," + locationY + ") in the " + roomLocation + ".");
 
+    }
+
+    public boolean shrink(Garden garden) {
+        return garden.isAtTVCamera(this.getLocationX(), this.getLocationY());
+    }
+
+    public boolean boardElevator(Garden garden) {
+        if (!garden.isAtElevator(this.getLocationX(), this.getLocationY())) {
+            System.out.println("There is nothing to board here!");
+        }
+        return garden.isAtElevator(this.getLocationX(), this.getLocationY());
     }
 
     public void signContract(Inside inside) {
@@ -250,7 +338,7 @@ public class Person {
         locationY = newLocY;
     }
 
-    public void lookAround(Outside outside, Inside inside) {
+    public void lookAround(Outside outside, Inside inside, Garden garden) {
         if (this.getLocationX() == -2) {
             System.out.println("You have a wall directly to your left");
         }
@@ -268,7 +356,7 @@ public class Person {
             System.out.println("You see a piece of paper with a line for signatures...interesting.");
         }
 
-        if (this.getRoomLocation().equals("Outside") && outside.checkLocationForChocolate(locationX, locationY)) {
+        if (this.getRoomLocation().equals("Outside") && outside.checkLocationForChocolate(this.getLocationX(), this.getLocationY())) {
             System.out.println("You see a chocolate bar!");
         }
 
@@ -277,12 +365,44 @@ public class Person {
         }
 
         if (this.getRoomLocation().equals("Garden")) {
-            System.out.println("You see a chocolate river");
+            String riverDirection = garden.getChocolateRiverDirection(this.getLocationX(), this.getLocationY());
+            if (riverDirection != null) {
+                System.out.println("You see the chocolate river to the " + riverDirection + ". Maybe there's a bridge in the middle of the room to help you get over it...");
+            }
         }
 
         if (this.getRoomLocation().equals("Outside") && this.getLocationX() == 2 && this.getLocationY() == 2) {
             System.out.println("You see a door to your right.");
         }
+
+        if (this.getRoomLocation().equals("Inside") && this.getLocationX() == -2 && this.getLocationY() == -2) {
+            System.out.println("You see a door to your left.");
+        }
+
+        if (this.getRoomLocation().equals("Inside") && this.getLocationX() == 2 && this.getLocationY() == -2) {
+            System.out.println("You see a door to your right.");
+        }
+
+        if (this.getRoomLocation().equals("Garden") && this.getLocationX() == -2 && this.getLocationY() == -2) {
+            System.out.println("You see a door to your left.");
+        }
+
+        if (this.getRoomLocation().equals("Garden") && this.getLocationX() == 0 && this.getLocationY() == 0) {
+            System.out.println("You see a bridge. Maybe it can help you get over the chocolate river.");
+        }
+
+        if (this.getRoomLocation().equals("Garden") && this.getLocationX() == 2 && this.getLocationY() == 1) {
+            System.out.println("You see an elevator. Who knows what will happen if you get on...");
+        }
+
+        if (this.getRoomLocation().equals("Garden") && this.getLocationX() == -1 && this.getLocationY() == -2) {
+            System.out.println("You see a TV Camera. Someone is telling you not to mess with it...");
+        }
+
+        if (this.getRoomLocation().equals("Garden") && this.getLocationX() == -2 && this.getLocationY() == 0) {
+            System.out.println("You see a gumball machine. You feel like someone told you not to eat anything without expressed permission...");
+        }
+
     }
 
 }
