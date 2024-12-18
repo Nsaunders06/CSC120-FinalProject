@@ -39,4 +39,16 @@ public class Item {
         return room;
     }
 
+    public void setLocationX(int x) {
+        this.locationX = x;
+    }
+
+    public void setLocationY(int y) {
+        this.locationY = y;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
 }

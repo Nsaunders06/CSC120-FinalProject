@@ -45,8 +45,8 @@ public class Person {
         }
         //If an item is found, pick it up
         if (foundItem != null) {
-            //inventory.add(foundItem);
-            //gameItems.remove(foundItem); // Remove the item from the world
+            inventory.add(foundItem);
+            gameItems.remove(foundItem); // Remove the item from the world
             System.out.println("You picked up: " + foundItem.getName());
         } //If no item is found, check for chocolate bars in Outside
         else if (this.getRoomLocation().equals("Outside")) {
@@ -68,6 +68,30 @@ public class Person {
         //If no item or chocolate bar is found
         else {
             System.out.println("There's nothing here to grab.");
+        }
+    }
+
+    public void drop(String itemName, ArrayList<Item> gameItems) {
+        Item droppedItem = null;
+
+        //Search for the item in the inventory
+        for(Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                droppedItem = item;
+                break;
+            }
+        } 
+
+        //Drop the item if found
+        if (droppedItem != null) {
+            inventory.remove(droppedItem); //Remove from inventory
+            droppedItem.setLocationX(this.getLocationX());
+            droppedItem.setLocationY(this.getLocationY());
+            droppedItem.setRoom(this.getRoomLocation());
+            gameItems.add(droppedItem);
+            System.out.println("You dropped: " + droppedItem.getName());
+        } else {
+            System.out.println("You don't have that item in your inventory.");
         }
     }
 
@@ -217,14 +241,5 @@ public void move(int deltaX, int deltaY) {
             System.out.println("You see a door to your right.");
         }
     }
-    /* 
-public void openDoor() {
-    //Check if the player is at one of the door locations
-    if((x == 2 && y == 2 && getRoomLocation().equals("Outside"))) {
-        setDoorOpenOutside(true);
-        System.out.println("The door is now open! You can move between the locations.");
-    }
-}
-     */
 
 }
