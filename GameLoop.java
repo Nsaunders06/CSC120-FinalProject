@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameLoop {
-/**
- * Makes game run! 
- * @param args
- */
+
+    /**
+     * Makes game run! A game loop to make the game interactive!
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         // Attributes 
         boolean stillPlaying = true; // let us know when the loop should end 
@@ -126,6 +128,6 @@ public class GameLoop {
             }
 
         } while (stillPlaying);
-        
+        userInput.close();
     }
 }

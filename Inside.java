@@ -2,6 +2,7 @@
 import java.util.Random;
 
 public class Inside {
+
     private boolean entranceDoorOpen;
     private boolean exitDoorOpen;
     private boolean contractSigned;
@@ -9,9 +10,9 @@ public class Inside {
     private int[] penLocation;
     private int[] contractLocation;
 
-/**
- * Constructor for Inside 
- */
+    /**
+     * Constructor for Inside
+     */
     public Inside() {
         this.entranceDoorOpen = false;
         this.exitDoorOpen = false;
@@ -19,37 +20,46 @@ public class Inside {
         this.penFound = false;
         placeItems();
     }
-/**
- * Get if the door inside into outside is open 
- * @return entrenceDoorOpen 
- */
+
+    /**
+     * Get if the door inside into outside is open
+     *
+     * @return entrenceDoorOpen
+     */
     public boolean getDoorOpenInsideToOutside() {
         return entranceDoorOpen;
     }
-/**
- * sets the door for inside into outside to open 
- * @param doorState
- */
+
+    /**
+     * sets the door for inside into outside to open
+     *
+     * @param doorState
+     */
     public void setDoorOpenInsideToOutside(boolean doorState) {
         entranceDoorOpen = doorState;
     }
-/**
- * Gets if the door to inside to garden is open 
- * @return exitDoorOpen
- */
+
+    /**
+     * Gets if the door to inside to garden is open
+     *
+     * @return exitDoorOpen
+     */
     public boolean getDoorOpenInsideToGarden() {
         return exitDoorOpen;
     }
-/**
- * sets the door from inside to garden to open 
- * @param doorState
- */
+
+    /**
+     * sets the door from inside to garden to open
+     *
+     * @param doorState
+     */
     public void setDoorOpenInsideToGarden(boolean doorState) {
         exitDoorOpen = doorState;
     }
-/**
- * places items in the room 
- */
+
+    /**
+     * places items in the room
+     */
     private void placeItems() {
         Random rand = new Random();
         this.penLocation = new int[]{rand.nextInt(5) - 2, rand.nextInt(5) - 2};
@@ -63,24 +73,28 @@ public class Inside {
             }
         }
     }
-/**
- * Looks to see the pen is at the location 
- * @param x 
- * @param y
- * @return boolean for if you have pen 
- */
+
+    /**
+     * Looks to see the pen is at the location
+     *
+     * @param x
+     * @param y
+     * @return boolean for if you have pen
+     */
     public boolean checkLocationForItem(int x, int y) {
         if (x == penLocation[0] && y == penLocation[1]) {
             return true; // Found the pen
         }
         return false;
     }
-/**
- * Signs the contract if the user has the pen 
- * @param x
- * @param y
- * @return boolean for if the contract is signed 
- */
+
+    /**
+     * Signs the contract if the user has the pen
+     *
+     * @param x
+     * @param y
+     * @return boolean for if the contract is signed
+     */
     public boolean signContract(int x, int y) {
         if (penFound && x == contractLocation[0] && y == contractLocation[1]) {
             setContractSigned(true);
@@ -98,62 +112,74 @@ public class Inside {
         }
     }
 
-/**
- * Gets is the pen is found 
- * @return penFound 
- */
-
+    /**
+     * Gets is the pen is found
+     *
+     * @return penFound
+     */
     public boolean isPenFound() {
         return penFound;
     }
-/**
- * Sets the pen as found 
- * @param penFound
- */
+
+    /**
+     * Sets the pen as found
+     *
+     * @param penFound
+     */
     public void setPenFound(boolean penFound) {
         this.penFound = penFound;
     }
 
-/**
- * Gets if contract is signed 
- * @return contractSigned 
- */
-
+    /**
+     * Gets if contract is signed
+     *
+     * @return contractSigned
+     */
     public boolean isContractSigned() {
         return contractSigned;
     }
-/**
- * Sets the contract to signed 
- * @param state
- */
+
+    /**
+     * Sets the contract to signed
+     *
+     * @param state
+     */
     public void setContractSigned(boolean state) {
         contractSigned = state;
     }
-/**
- * gets the x coordinate for the contract 
- * @return int location of the x 
- */
+
+    /**
+     * gets the x coordinate for the contract
+     *
+     * @return int location of the x
+     */
     public int getContractLocationX() {
         return contractLocation[0];
     }
-/**
- * gets the y coordinate for the contract 
- * @return int location of the y 
- */
+
+    /**
+     * gets the y coordinate for the contract
+     *
+     * @return int location of the y
+     */
     public int getContractLocationY() {
         return contractLocation[1];
     }
-/**
- * gets the x coordinate for the pen 
- * @return int location of the x 
- */
+
+    /**
+     * gets the x coordinate for the pen
+     *
+     * @return int location of the x
+     */
     public int getPenLocationX() {
         return penLocation[0];
     }
-/**
- * gets the y coordinate for the pen 
- * @return int location of the y
- */
+
+    /**
+     * gets the y coordinate for the pen
+     *
+     * @return int location of the y
+     */
     public int getPenLocationY() {
         return penLocation[1];
     }

@@ -10,19 +10,19 @@ public class Outside {
     private ArrayList<int[]> chocolateBars;
     private int[] goldenTicketLocation;
 
-/**
-* Constructor for Outside
-*/
-
+    /**
+     * Constructor for Outside
+     */
     public Outside() {
         this.goldenTicket = false;
         this.doorOpen = false;
         this.chocolateBars = new ArrayList<>();
         placeChocolateBars();
     }
-/**
- * places the location of the chololate bars randomly 
- */
+
+    /**
+     * places the location of the chololate bars randomly
+     */
     private void placeChocolateBars() {
         Random rand = new Random();
         int numberOfBars = 5; // Number of chocolate bars to place
@@ -48,12 +48,13 @@ public class Outside {
         goldenTicketLocation = chocolateBars.get(rand.nextInt(chocolateBars.size()));
     }
 
-/**
- * checks if there is a chocolate bar at a location 
- * @param x
- * @param y
- * @return if there is a chocolate bar 
- */
+    /**
+     * checks if there is a chocolate bar at a location
+     *
+     * @param x
+     * @param y
+     * @return if there is a chocolate bar
+     */
     public boolean checkLocationForChocolate(int x, int y) {
         for (int[] location : chocolateBars) {
             if (location[0] == x && location[1] == y) {
@@ -62,40 +63,50 @@ public class Outside {
         }
         return false;
     }
-/**
- * Checks if there is a golden ticket inside the chocolate bar selected 
- * @param x
- * @param y
- * @return if there is a golden ticket 
- */
+
+    /**
+     * Checks if there is a golden ticket inside the chocolate bar selected
+     *
+     * @param x
+     * @param y
+     * @return if there is a golden ticket
+     */
     public boolean checkGoldenTicket(int x, int y) {
         return (x == goldenTicketLocation[0] && y == goldenTicketLocation[1]);
     }
-/**
- * Checks if the door to outside is open 
- * @return doorOpen
- */
+
+    /**
+     * Checks if the door to outside is open
+     *
+     * @return doorOpen
+     */
     public boolean getDoorOpenOutside() {
         return doorOpen;
     }
-/**
- * Sets the door to outside open 
- * @param doorState
- */
+
+    /**
+     * Sets the door to outside open
+     *
+     * @param doorState
+     */
     public void setDoorOpenOutside(boolean doorState) {
         doorOpen = doorState;
     }
-/**
- * Sets the golden ticket state to the corect state 
- * @param ticketState
- */
+
+    /**
+     * Sets the golden ticket state to the corect state
+     *
+     * @param ticketState
+     */
     public void setGoldenTicketState(boolean ticketState) {
         goldenTicket = ticketState;
     }
-/**
- * gets the state of the golden ticket 
- * @return state of the goldenTicket 
- */
+
+    /**
+     * gets the state of the golden ticket
+     *
+     * @return state of the goldenTicket
+     */
     public boolean getGoldenTicketState() {
         return goldenTicket;
     }
