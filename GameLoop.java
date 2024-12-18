@@ -13,10 +13,8 @@ public class GameLoop {
         Outside outside = new Outside();
         Inside inside = new Inside();
 
-        //inside.addRiddles()
-
         ArrayList<Item> gameItems = new ArrayList<>();
-        gameItems.add(new Item("Pen", "A mysterious writing utensil", -1, 0, "Inside", false));
+        gameItems.add(new Item("Pen", "A mysterious writing utensil", inside.getPenLocationX(), inside.getPenLocationY(), "Inside", false));
 
         //Welcome message 
         System.out.println("******************");
@@ -27,7 +25,7 @@ public class GameLoop {
         do {
             userResponse = userInput.nextLine().toUpperCase();
             if (userResponse.equals("LOOK AROUND")) {
-                person.lookAround();
+                person.lookAround(outside, inside);
             }
             if (userResponse.contains("WHERE AM I")) {
                 person.viewLocation();
@@ -51,7 +49,7 @@ public class GameLoop {
             }
 
             if (userResponse.contains("GRAB") || userResponse.contains("PICK UP")) {
-                person.grab(gameItems, outside);
+                person.grab(gameItems, outside, inside);
             }
 
             if (userResponse.contains("VIEW INVENTORY") || userResponse.contains("INVENTORY") || userResponse.contains("WHAT DO I HAVE")) {
@@ -64,6 +62,10 @@ public class GameLoop {
             }
 
             System.out.println("You are still stuck. Keep going :)");
+
+            if(userResponse.contains("SIGN")) {
+                person.signContract(inside);
+            }
 
         } while (stillPlaying);
 

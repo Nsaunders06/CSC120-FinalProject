@@ -1,20 +1,23 @@
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Outside{
+public class Outside {
+
     //Attributes 
-    private boolean goldenTicket; 
-    private boolean doorOpen; 
+    private boolean goldenTicket;
+    private boolean doorOpen;
     private ArrayList<int[]> chocolateBars;
     private int[] goldenTicketLocation;
+
     //private Item goldenTicketItem;
-    /** 
-     * Constructor for Outside 
+    /**
+     * Constructor for Outside
      */
-    
-    public Outside(){
-        this.goldenTicket = false; 
-        this.doorOpen = false; 
+
+    public Outside() {
+        this.goldenTicket = false;
+        this.doorOpen = false;
         this.chocolateBars = new ArrayList<>();
         placeChocolateBars();
         //this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0, "Outside", false);
@@ -30,7 +33,7 @@ public class Outside{
 
             if (!(x == -2 && y == -2)) {
                 boolean alreadyPlaced = false;
-                for (int [] location : chocolateBars) {
+                for (int[] location : chocolateBars) {
                     if (location[0] == x && location[1] == y) {
                         alreadyPlaced = true;
                         break;
@@ -57,34 +60,20 @@ public class Outside{
     public boolean checkGoldenTicket(int x, int y) {
         return (x == goldenTicketLocation[0] && y == goldenTicketLocation[1]);
     }
-   
-    /* 
-    //I'm not actually sure if this is ever used...we can make it be used but that would just mean it automatically tells them the ticket and door are there instead of them having to look around
-    public void interact(Person player) {
-        if (player.getLocationX() == 0 && player.getLocationY() == 0 && !goldenTicket) {
-            System.out.println("You found the golden ticket!");
-            //some code here if they grab the ticket?? 
-        }
-        if (goldenTicket && player.getLocationX() == 2 && player.getLocationY() == 2) {
-            System.out.println("A door appears!");
-           
-        }
-    }
-    */
 
     public boolean getDoorOpenOutside() {
         return doorOpen;
     }
-    
+
     public void setDoorOpenOutside(boolean doorState) {
         doorOpen = doorState;
     }
-    
+
     public void setGoldenTicketState(boolean ticketState) {
-         goldenTicket = ticketState;
+        goldenTicket = ticketState;
     }
-    
+
     public boolean getGoldenTicketState() {
         return goldenTicket;
     }
-    }
+}

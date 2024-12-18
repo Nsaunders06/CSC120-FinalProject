@@ -2,16 +2,12 @@
 import java.util.ArrayList;
 
 public class Person {
-//attributes 
-
+    //attributes 
     int locationX;
     int locationY;
-//Arraylist <items> inventory; 
     String roomLocation;
-//inventory to hold items
+    //inventory to hold items
     private ArrayList<Item> inventory;
-//Inside inside = new Inside();
-//Outside outside = new Outside()
 
     /**
      * Constructor
@@ -34,7 +30,7 @@ public class Person {
         }
     } // Come back and fix this once more stuff is in place 
 
-    public void grab(ArrayList<Item> gameItems, Outside outside) {
+    public void grab(ArrayList<Item> gameItems, Outside outside, Inside inside) {
         Item foundItem = null;
         //Check for items in the gameItems list
         for (Item item : gameItems) {
@@ -48,6 +44,9 @@ public class Person {
             inventory.add(foundItem);
             gameItems.remove(foundItem); // Remove the item from the world
             System.out.println("You picked up: " + foundItem.getName());
+            if (foundItem.getName().equals("Pen")) {
+                inside.setPenFound(true);
+            }
         } //If no item is found, check for chocolate bars in Outside
         else if (this.getRoomLocation().equals("Outside")) {
             int x = this.getLocationX();
@@ -64,8 +63,7 @@ public class Person {
                 System.out.println("There's nothing here to grab.");
             }
 
-        }
-        //If no item or chocolate bar is found
+        } //If no item or chocolate bar is found
         else {
             System.out.println("There's nothing here to grab.");
         }
@@ -75,12 +73,12 @@ public class Person {
         Item droppedItem = null;
 
         //Search for the item in the inventory
-        for(Item item : inventory) {
+        for (Item item : inventory) {
             if (item.getName().equalsIgnoreCase(itemName)) {
                 droppedItem = item;
                 break;
             }
-        } 
+        }
 
         //Drop the item if found
         if (droppedItem != null) {
@@ -111,12 +109,6 @@ public class Person {
         return "(" + getLocationX() + "," + getLocationY() + ")";
     }
 
-    /*
-public void move(int deltaX, int deltaY) {
-    int newX = locationX + deltaX;
-    int newY = locationY + deltaY;
-}
-     */
     public void move(String direction, int delta, Outside outside, Inside inside) {
         int newX = locationX;
         int newY = locationY;
@@ -134,7 +126,6 @@ public void move(int deltaX, int deltaY) {
             throw new RuntimeException("This is not a valid direction, please enter one of the following directions:\nForward, Up, North\nBack, Down, South\nLeft, West\nRight, East");
         }
 
-        // System.out.println("Check 1 in move");
         // Check for room transition at door locations
         if (roomLocation.equals("Outside") && newX > 2 && newY == 2) {
             // Moving from Outside to Inside
@@ -166,7 +157,6 @@ public void move(int deltaX, int deltaY) {
             return;
         }
 
-
 // Update position and room
         setLocationX(newX);
         setLocationY(newY);
@@ -176,6 +166,14 @@ public void move(int deltaX, int deltaY) {
 
         System.out.println("You moved to (" + locationX + "," + locationY + ") in the " + roomLocation + ".");
 
+    }
+
+    public void signContract(Inside inside) {
+        if (this.getRoomLocation().equals("Inside")) {
+            inside.signContract(this.getLocationX(), this.getLocationY());
+        } else {
+            System.out.println("There is nothing to sign in this room!");
+        }
     }
 //Getters and setters
 
@@ -215,7 +213,7 @@ public void move(int deltaX, int deltaY) {
         locationY = newLocY;
     }
 
-    public void lookAround() {
+    public void lookAround(Outside outside, Inside inside) {
         if (this.getLocationX() == -2) {
             System.out.println("You have a wall directly to your left");
         }
@@ -228,15 +226,23 @@ public void move(int deltaX, int deltaY) {
         if (this.getLocationY() == -2) {
             System.out.println("you have a wall directly behind you");
         }
-        if (this.getRoomLocation().equals("Outside") && this.getLocationX() == 0 && this.getLocationY() == 0) {
-            System.out.println("You see a golden object"); //Come back and fix 
+        
+        if (this.getRoomLocation().equals("Inside") && this.getLocationX() == inside.getContractLocationX() && this.getLocationY() == inside.getContractLocationY()) {
+            System.out.println("You see a piece of paper with a line for signatures...interesting.");
         }
+
+        if (this.getRoomLocation().equals("Outside") && outside.checkLocationForChocolate(locationX, locationY)) {
+            System.out.println("You see a chocolate bar!");
+        }
+
+        if (this.getRoomLocation().equals("Inside") && this.getLocationX() == inside.getPenLocationX() && this.getLocationY() == inside.getPenLocationY()) {
+            System.out.println("You see a mysterious writing utensil");
+        }
+
         if (this.getRoomLocation().equals("Garden")) {
             System.out.println("You see a chocolate river");
         }
-        if (this.getRoomLocation().equals("Inside")) {
-            System.out.println("You see in front of you an easel and some sort of pen?");
-        }
+        
         if (this.getRoomLocation().equals("Outside") && this.getLocationX() == 2 && this.getLocationY() == 2) {
             System.out.println("You see a door to your right.");
         }

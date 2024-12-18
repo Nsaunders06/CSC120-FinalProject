@@ -1,7 +1,9 @@
+
 public class Item {
+
     private String name;
     private String description;
-    private int locationX; 
+    private int locationX;
     private int locationY;
     private String room;
     private boolean inInventory;
@@ -9,8 +11,8 @@ public class Item {
     public Item(String name, String description, int locationX, int locationY, String room, boolean inInventory) {
         this.name = name;
         this.description = description;
-        this.locationX = locationX; 
-        this.locationY = locationY; 
+        this.locationX = locationX;
+        this.locationY = locationY;
         this.room = room;
         this.inInventory = inInventory;
     }
@@ -23,7 +25,7 @@ public class Item {
         return name;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
