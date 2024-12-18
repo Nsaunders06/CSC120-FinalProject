@@ -426,19 +426,41 @@ public class Person {
         System.out.println("\nUse commands wisely to progress in the game!");
     }
 
-//Getters and setters
+    //Getters and setters
+    /**
+     * Gets the current X-coordinate of the player's location.
+     *
+     * @return The X-coordinate of the player's location.
+     */
     public int getLocationX() {
         return locationX;
     }
 
+    /**
+     * Gets the current Y-coordinate of the player's location.
+     *
+     * @return The Y-coordinate of the player's location.
+     */
     public int getLocationY() {
         return locationY;
     }
 
+    /**
+     * Gets the name of the current room the player is located in.
+     *
+     * @return The name of the room the player is in (e.g., "Inside", "Outside",
+     * "Garden").
+     */
     public String getRoomLocation() {
         return roomLocation;
     }
 
+    /**
+     * Gets a string representation of the items in the player's inventory.
+     *
+     * @return A string containing the names of all items in the player's
+     * inventory.
+     */
     public String getInventory() {
         String itemListNames = "";
         for (int i = 0; i < inventory.size(); i++) {
@@ -447,6 +469,14 @@ public class Person {
         return itemListNames;
     }
 
+    /**
+     * Sets the player's room location to a new room. Valid room names are
+     * "Garden", "Outside", and "Inside".
+     *
+     * @param newRoomLocation The name of the room to set the player’s location
+     * to.
+     * @throws RuntimeException If the room name is not valid.
+     */
     public void setRoomLocation(String newRoomLocation) {
         if (newRoomLocation.equalsIgnoreCase("Garden") || newRoomLocation.equalsIgnoreCase("Outside") || newRoomLocation.equalsIgnoreCase("Inside")) {
             roomLocation = newRoomLocation;
@@ -455,14 +485,36 @@ public class Person {
         }
     }
 
+    /**
+     * Sets the player's X-coordinate to a new value.
+     *
+     * @param newLocX The new X-coordinate to set the player's location to.
+     */
     public void setLocationX(int newLocX) {
         locationX = newLocX;
     }
 
+    /**
+     * Sets the player's Y-coordinate to a new value.
+     *
+     * @param newLocY The new Y-coordinate to set the player's location to.
+     */
     public void setLocationY(int newLocY) {
         locationY = newLocY;
     }
 
+    /**
+     * Describes the player's surroundings based on their current location and
+     * room. The description varies based on the room (Inside, Outside, or
+     * Garden) and the player's location within that room.
+     *
+     * @param outside The Outside room object to access specific locations
+     * within the room.
+     * @param inside The Inside room object to access specific locations within
+     * the room.
+     * @param garden The Garden room object to access specific locations within
+     * the room.
+     */
     public void lookAround(Outside outside, Inside inside, Garden garden) {
         if (this.getLocationX() == -2) {
             System.out.println("You have a wall directly to your left");
