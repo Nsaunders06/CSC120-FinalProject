@@ -1,17 +1,26 @@
 
 import java.util.ArrayList;
 
+/**
+ * The Person class represents a player or character in the game world. It
+ * includes attributes such as location, inventory, and room context, and
+ * provides methods for interaction with the game environment, such as moving,
+ * opening/closing doors, picking up items, and more.
+ */
 public class Person {
 
     //attributes 
-    int locationX;
-    int locationY;
-    String roomLocation;
+    int locationX; //x coordinate of a person's current location
+    int locationY; //y coordiante of a person's current location
+    String roomLocation; //the name of the current room where the person is located
+
     //inventory to hold items
     private ArrayList<Item> inventory;
 
     /**
-     * Constructor
+     * Constructor for the Person class.
+     *
+     * @param roomLocation The initial room location for the person.
      */
     public Person(String roomLocation) {
         this.locationX = -2;
@@ -20,7 +29,17 @@ public class Person {
         this.inventory = new ArrayList<Item>();
     }
 
-    //This says if the door is open or not 
+    /**
+     * Opens a door based on the person's current location, room, and door
+     * conditions.
+     *
+     * @param locationX The X-coordinate of the person's current location.
+     * @param locationY The Y-coordinate of the person's current location.
+     * @param room The name of the room where the door is located.
+     * @param outside The Outside context of the game world.
+     * @param inside The Inside context of the game world.
+     * @param garden The Garden context of the game world.
+     */
     public void open(int locationX, int locationY, String room, Outside outside, Inside inside, Garden garden) {
         if (room.equals("Outside") && locationX == 2 && locationY == 2) {
             if (outside.getGoldenTicketState()) {
@@ -64,7 +83,17 @@ public class Person {
         }
     }
 
-    //This says if the door is open or not 
+    /**
+     * Closes a door based on the person's current location, room, and door
+     * conditions.
+     *
+     * @param locationX The X-coordinate of the person's current location.
+     * @param locationY The Y-coordinate of the person's current location.
+     * @param outside The Outside context of the game world.
+     * @param inside The Inside context of the game world.
+     * @param garden The Garden context of the game world.
+     * @param room The name of the room where the door is located.
+     */
     public void close(int locationX, int locationY, Outside outside, Inside inside, Garden garden, String room) {
         if (room.equals("Outside") && locationX == 2 && locationY == 2) {
             if (outside.getGoldenTicketState()) {
@@ -107,6 +136,14 @@ public class Person {
         }
     }
 
+    /**
+     * Picks up an item if it is present at the person's current location and
+     * adds it to the inventory.
+     *
+     * @param gameItems A list of items available in the game world.
+     * @param outside The Outside context of the game world.
+     * @param inside The Inside context of the game world.
+     */
     public void grab(ArrayList<Item> gameItems, Outside outside, Inside inside) {
         Item foundItem = null;
         //Check for items in the gameItems list
@@ -170,6 +207,9 @@ public class Person {
         }
     }
 
+    /**
+     * Displays the contents of the person's inventory.
+     */
     public void viewInventory() {
         if (inventory.size() != 0) {
             System.out.println("Inventory:");
@@ -182,10 +222,25 @@ public class Person {
 
     }
 
+    /**
+     * Provides a string representation of the person's current location.
+     *
+     * @return A string showing the current coordinates of the person.
+     */
     public String viewLocation() {
         return "(" + getLocationX() + "," + getLocationY() + ")";
     }
 
+    /**
+     * Moves the person in the specified direction by a given distance (delta).
+     * Also handles room transitions if a door is encountered.
+     *
+     * @param direction The direction to move (e.g., "North", "South", etc.).
+     * @param delta The distance to move in the specified direction.
+     * @param outside The Outside context of the game world.
+     * @param inside The Inside context of the game world.
+     * @param garden The Garden context of the game world.
+     */
     public void move(String direction, int delta, Outside outside, Inside inside, Garden garden) {
         int newX = locationX;
         int newY = locationY;
@@ -266,10 +321,28 @@ public class Person {
 
     }
 
+    /**
+     * Attempts to interact with a TV camera in the garden.
+     *
+     * @param garden The Garden object to check if the TV camera is at the
+     * character's current location.
+     * @return true if the character is at the TV camera's location, false
+     * otherwise.
+     */
     public boolean shrink(Garden garden) {
         return garden.isAtTVCamera(this.getLocationX(), this.getLocationY());
     }
 
+    /**
+     * Checks if the character is at the elevator's location and allows
+     * boarding.
+     *
+     * @param garden The Garden object to check if the elevator is at the
+     * character's current location.
+     * @return true if the character is at the elevator's location, false
+     * otherwise. If the elevator is not at the current location, a message is
+     * printed.
+     */
     public boolean boardElevator(Garden garden) {
         if (!garden.isAtElevator(this.getLocationX(), this.getLocationY())) {
             System.out.println("There is nothing to board here!");
@@ -278,6 +351,15 @@ public class Person {
         return true;
     }
 
+    /**
+     * Attempts to sign the contract if the character is in the correct location
+     * within the Inside room.
+     *
+     * @param inside The Inside object containing the location of the contract
+     * and the method to sign it.
+     * @throws RuntimeException if the character is not in the "Inside" room or
+     * the room doesn't contain the contract.
+     */
     public void signContract(Inside inside) {
         if (this.getRoomLocation().equals("Inside")) {
             inside.signContract(this.getLocationX(), this.getLocationY());
@@ -286,6 +368,15 @@ public class Person {
         }
     }
 
+    /**
+     * Checks if the character is in the garden and at the chocolate river's
+     * location.
+     *
+     * @param garden The Garden object to check if the chocolate river is at the
+     * character's current location.
+     * @return true if the character is in the garden and at the chocolate
+     * river's location, false otherwise.
+     */
     public boolean chocolateRiver(Garden garden) {
         if (this.getRoomLocation().equals("Garden")) {
             return garden.isInChocolateRiver(this.getLocationX(), this.getLocationY());
@@ -293,6 +384,16 @@ public class Person {
         return false;
     }
 
+    /**
+     * Checks if the character is in the garden and at the gumball machine's
+     * location.
+     *
+     * @param garden The Garden object to check if the gumball machine is at the
+     * character's current location.
+     * @return true if the character is in the garden and at the gumball
+     * machine's location, false otherwise. If the character is not in the
+     * garden, a message is printed.
+     */
     public boolean chew(Garden garden) {
         if (this.getRoomLocation().equals("Garden")) {
             return garden.isAtGumballMachine(this.getLocationX(), this.getLocationY());
@@ -302,6 +403,12 @@ public class Person {
         return false;
     }
 
+    /**
+     * Displays a list of available commands in the game to the player.
+     *
+     * This method prints out a summary of the commands the player can use to
+     * interact with the game world.
+     */
     public static void displayHelp() {
         System.out.println("\nAvailable Commands:");
         System.out.println("- LOOK AROUND: Observe your surroundings.");
@@ -318,9 +425,8 @@ public class Person {
         System.out.println("- HELP: Display this list of commands.");
         System.out.println("\nUse commands wisely to progress in the game!");
     }
-    
-//Getters and setters
 
+//Getters and setters
     public int getLocationX() {
         return locationX;
     }

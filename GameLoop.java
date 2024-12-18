@@ -19,7 +19,6 @@ public class GameLoop {
         gameItems.add(new Item("Pen", "A mysterious writing utensil", inside.getPenLocationX(), inside.getPenLocationY(), "Inside"));
 
         //Welcome message 
-        // Welcome message
         System.out.println("******************************************************");
         System.out.println("          WELCOME TO THE CHOCO-VENTURE OF A LIFETIME!");
         System.out.println("******************************************************");
