@@ -63,14 +63,6 @@ public class GameLoop {
                 person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside);
             }
 
-            if (userResponse.contains("ANSWER RIDDLE")) {
-                if (person.getRoomLocation().equals("Inside")) {
-                    System.out.println("Answering a riddle...");
-                    //inside.askRiddle();
-                } else {
-                    System.out.println("You must be inside to answer riddles.");
-                }
-            }
             System.out.println("You are still stuck. Keep going :)");
 
         } while (stillPlaying);
