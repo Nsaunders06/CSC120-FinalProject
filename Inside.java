@@ -153,7 +153,7 @@ public class Inside {
     }
 /**
  * gets the y coordinate for the pen 
- * @return int location of the y 
+ * @return int location of the y
  */
     public int getPenLocationY() {
         return penLocation[1];
