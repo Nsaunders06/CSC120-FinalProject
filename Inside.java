@@ -84,6 +84,7 @@ public class Inside {
         this.penFound = penFound;
     }
 
+
     // Getter for contractSigned
     public boolean isContractSigned() {
         return contractSigned;

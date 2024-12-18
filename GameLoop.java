@@ -12,6 +12,7 @@ public class GameLoop {
         Person person = new Person("Outside");
         Outside outside = new Outside();
         Inside inside = new Inside();
+        Garden garden = new Garden();
 
         ArrayList<Item> gameItems = new ArrayList<>();
         gameItems.add(new Item("Pen", "A mysterious writing utensil", inside.getPenLocationX(), inside.getPenLocationY(), "Inside", false));
@@ -58,7 +59,7 @@ public class GameLoop {
 
             //Looks if true --> if the door is open then if the location is 2 & 2 set the doors open 
             if (userResponse.contains("OPEN")) {
-                person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside);
+                person.open(person.getLocationX(), person.getLocationY(), person.getRoomLocation(), outside, inside, garden);
             }
 
             System.out.println("You are still stuck. Keep going :)");
@@ -66,6 +67,16 @@ public class GameLoop {
             if(userResponse.contains("SIGN")) {
                 person.signContract(inside);
             }
+
+            if(userResponse.contains("CHEW")) {
+                stillPlaying = person.chew(garden);
+            }
+
+            if (stillPlaying) {
+                stillPlaying = !person.chocolateRiver(garden);
+            }
+            
+
 
         } while (stillPlaying);
 
