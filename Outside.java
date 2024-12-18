@@ -10,9 +10,9 @@ public class Outside {
     private ArrayList<int[]> chocolateBars;
     private int[] goldenTicketLocation;
 
-    /**
-     * Constructor for Outside
-     */
+/**
+* Constructor for Outside
+*/
 
     public Outside() {
         this.goldenTicket = false;

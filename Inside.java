@@ -81,7 +81,6 @@ public class Inside {
  * @param y
  * @return boolean for if the contract is signed 
  */
-    // Signs the contract if the pen is found
     public boolean signContract(int x, int y) {
         if (penFound && x == contractLocation[0] && y == contractLocation[1]) {
             setContractSigned(true);
@@ -103,7 +102,7 @@ public class Inside {
  * Gets is the pen is found 
  * @return penFound 
  */
-    // Getter and Setter for penFound
+
     public boolean isPenFound() {
         return penFound;
     }
@@ -119,7 +118,7 @@ public class Inside {
  * Gets if contract is signed 
  * @return contractSigned 
  */
-    // Getter for contractSigned
+
     public boolean isContractSigned() {
         return contractSigned;
     }

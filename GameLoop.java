@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameLoop {
-
+/**
+ * Makes game run! 
+ * @param args
+ */
     public static void main(String[] args) {
         // Attributes 
         boolean stillPlaying = true; // let us know when the loop should end 

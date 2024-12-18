@@ -2,7 +2,7 @@
 
 **YES** 2 pts: Game has a **robust, understandable text-based interface** that allows the player to control their movement through the game.  Player should be able to enter any command at any time, and if it makes sense in the current context it will be carried out.
 
-_____ 2 pts: Submission includes a **cheat sheet** (`cheatsheet.md`) documenting all of the available commands, as well as a **description of the layout** of your game world's underlying physical layout; this can be described in words, or included as a separate image file if you prefer to sketch a map by hand.  If your game includes **challenges** that must be overcome to win, also describe them here.
+**YES** 2 pts: Submission includes a **cheat sheet** (`cheatsheet.md`) documenting all of the available commands, as well as a **description of the layout** of your game world's underlying physical layout; this can be described in words, or included as a separate image file if you prefer to sketch a map by hand.  If your game includes **challenges** that must be overcome to win, also describe them here.
 
 **YES** 2 pts: Storyline driving the game is **engaging**, and individual elements of play make sense within the context of the story.
 
@@ -33,15 +33,15 @@ _____ 2 pts: Submission includes a **cheat sheet** (`cheatsheet.md`) documenting
 
 **YES** 2 pt: Complies with style guidelines (missing items 1 pt each):
 
-      _____ Classes & class members all have Javadoc header comments.
+      **YES** Classes & class members all have Javadoc header comments.
 
-      _____ Clear and consistent indentation of bracketed sections.
+      **YES**  Clear and consistent indentation of bracketed sections.
 
-      _____ Adheres to Java conventions on naming & capitalization.
+      **YES**  Adheres to Java conventions on naming & capitalization.
 
-      _____ Methods & variables all have clear and accurate names.
+      **YES**  Methods & variables all have clear and accurate names.
 
-      _____ Methods avoid confusing side effects.
+      **YES**  Methods avoid confusing side effects.
 
 **YES** 1 pt: All required files included with submission (including completed checklist file).
 
