@@ -10,7 +10,6 @@ public class Outside {
     private ArrayList<int[]> chocolateBars;
     private int[] goldenTicketLocation;
 
-    //private Item goldenTicketItem;
     /**
      * Constructor for Outside
      */
@@ -20,7 +19,6 @@ public class Outside {
         this.doorOpen = false;
         this.chocolateBars = new ArrayList<>();
         placeChocolateBars();
-        //this.goldenTicketItem = new Item("Golden Ticket", "A shimmering golden ticket to enter the factory.", 0, 0, "Outside", false);
     }
 
     private void placeChocolateBars() {
